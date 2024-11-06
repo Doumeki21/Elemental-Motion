@@ -1,13 +1,5 @@
 {
   "dependencies": {
-    "com.iam1337.extosc": {
-      "version": "file:C:/Users/malco/Downloads/extOSC-master/Assets/extOSC",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      }
-    },
     "com.unity.burst": {
       "version": "1.8.17",
       "depth": 1,
