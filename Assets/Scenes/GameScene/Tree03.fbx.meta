@@ -3,23 +3,7 @@ guid: cc939194d56e2544197f26f9fce23cb3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leaf02
-    second: {fileID: 2100000, guid: a2a8a4e82ffa8b7409e31d58e2d33e09, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LeavesSphere02
-    second: {fileID: 2100000, guid: f3ede8cc0d2d9744ea1f576b0ef2eebc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TreeBark02
-    second: {fileID: -876546973899608171, guid: 42490cc8b3dd74c4698f257b9721a23b,
-      type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

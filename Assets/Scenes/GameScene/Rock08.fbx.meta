@@ -3,7 +3,12 @@ guid: 83edaac54dabd97499aca780a77f3dec
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ghibli Rocks
+    second: {fileID: 2100000, guid: 15e8afdfa7b115b4ca6a51d5399b1a10, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
