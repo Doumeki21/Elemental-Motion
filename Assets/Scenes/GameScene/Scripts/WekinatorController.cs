@@ -55,12 +55,16 @@ public class WekinatorController : MonoBehaviour
             float value = outputs[i];
 
             // Example: Scale the object
-            // controlledObjects[i].transform.localScale = Vector3.one * value;
+            controlledObjects[i].transform.localPosition = Vector3.one * 100f * value;
 
             // Example: Change object color
-            MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
+            if (i == 0)
+            {
+                MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
 
-            meshRenderer.material.SetFloat("_DisplacementStrength", value);
+                meshRenderer.material.SetFloat("_DisplacementStrength", value);
+            }
+
         }
     }
 }
