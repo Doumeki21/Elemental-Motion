@@ -12,6 +12,8 @@ public class PlayerCam : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode rotateLeft = KeyCode.Q;
     public KeyCode rotateRight = KeyCode.E;
+    public KeyCode lookUp = KeyCode.R; // Key to look up
+    public KeyCode lookDown = KeyCode.F; // Key to look down
 
     float xRotation;
     float yRotation;
@@ -45,11 +47,25 @@ public class PlayerCam : MonoBehaviour
             horizontalInput = 1f;
         }
 
+        // Vertical input for looking up and down
+        float verticalInput = 0f;
+
+        if (Input.GetKey(lookUp)) // Look up
+        {
+            verticalInput = -1f;
+        }
+        else if (Input.GetKey(lookDown)) // Look down
+        {
+            verticalInput = 1f;
+        }
+
         // Calculate horizontal rotation
         yRotation += horizontalInput * rotationSpeed * Time.deltaTime;
+        // Calculate vertical rotation
+        xRotation += verticalInput * rotationSpeed * Time.deltaTime;
 
         //restrict looking up or down more than 90 deg
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -45f, 45f);
 
         //rotate cam + orientation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
