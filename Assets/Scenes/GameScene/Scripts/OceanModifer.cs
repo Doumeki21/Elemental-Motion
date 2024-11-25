@@ -14,7 +14,6 @@ public class OceanModifer : MonoBehaviour
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.material.color = Color.cyan;
     }
 
     // Update is called once per frame
@@ -24,7 +23,7 @@ public class OceanModifer : MonoBehaviour
         {
             DisplacementStrength += 0.1f;
             if (DisplacementStrength > 10) DisplacementStrength = 10;
-            meshRenderer.material.SetFloat("_DisplacementStrength", DisplacementStrength);
+            meshRenderer.material.SetFloat("_WaveScale", DisplacementStrength);
             // meshRenderer.material.SetFloat("_Smoothness", DisplacementStrength);
         }
 
@@ -32,18 +31,18 @@ public class OceanModifer : MonoBehaviour
         {
             DisplacementStrength -= 0.1f;
             if (DisplacementStrength < 0) DisplacementStrength = 0.1f;
-            meshRenderer.material.SetFloat("_DisplacementStrength", DisplacementStrength);
+            meshRenderer.material.SetFloat("_WaveScale", DisplacementStrength);
             // meshRenderer.material.SetFloat("_Smoothness", DisplacementStrength);
         }
     }
 
     public void OceanDisplacementSlider(float Displacement)
     {
-        meshRenderer.material.SetFloat("_DisplacementStrength", Displacement);
+        meshRenderer.material.SetFloat("_WaveScale", Displacement);
     }
 
-    public void ChangeNormalTexture()
-    {
-        meshRenderer.material.SetTexture("_MainTex", albedotexture);
-    }
+    // public void ChangeNormalTexture()
+    // {
+    //     meshRenderer.material.SetTexture("_MainTex", albedotexture);
+    // }
 }
