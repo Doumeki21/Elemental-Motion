@@ -26,7 +26,7 @@ public class WekinatorController : MonoBehaviour
             return;
         }
 
-        // Subscribe to the OSC address
+        // Bind to the OSC address
         oscReceiver.Bind(OSCAddress, HandleWekinatorOutputs);
     }
 
@@ -37,6 +37,7 @@ public class WekinatorController : MonoBehaviour
         {
             float[] outputs = new float[message.Values.Count];
 
+            // Creates an array to store the float values
             for (int i = 0; i < message.Values.Count; i++)
             {
                 outputs[i] = message.Values[i].FloatValue;
@@ -61,6 +62,7 @@ public class WekinatorController : MonoBehaviour
 
         for (int i = 0; i < outputs.Length; i++)
         {
+            // Scrolls through each value in the array. Each "if" statement sends the respective value in the array to the correct GameObject
             float value = outputs[i];
 
             // This changes the sharpness of the mist over the water in the center of the map
@@ -77,26 +79,27 @@ public class WekinatorController : MonoBehaviour
                 meshRenderer.material.SetFloat("_DisplacementStrength", value);
             }
 
-            // This changes the panning speed of the mist over the water in the center of the map
+            // This changes the cutoff the texture of the mist over the water in the center of the map
             if (i == 3)
             {
                 MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
-                meshRenderer.material.SetFloat("_PanSpeed", value);
+                Vector2 CutoffScaleChange = new Vector2(0.07f, value);
+                meshRenderer.material.SetVector("_CloudCutoff", CutoffScaleChange);
             }
 
-            // This Changes the scale of the water texture
+            // This Changes the Metallicness of the water texture
             if (i == 4)
             {
                 MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
                 Vector2 UVScaleChange = new Vector2(value, value);
-                meshRenderer.material.SetVector("Vector2_37B21477", UVScaleChange);
+                meshRenderer.material.SetVector("Vector1_3D886DA1", UVScaleChange);
             }
 
-            // This changes the contrast of the water
+            // This changes the frequency of the waves in the ocean
             if (i == 5)
             {
                 MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
-                meshRenderer.material.SetFloat("Vector1_B9F56378", value);
+                meshRenderer.material.SetFloat("_WaveFrequency", value);
             }
 
             // This changes the height of the ocean waves
@@ -106,17 +109,16 @@ public class WekinatorController : MonoBehaviour
                 meshRenderer.material.SetFloat("_WaveScale", value);
             }
 
-            // This changes the water's scroll speed
+            // This changes the speed of the ocean waves
             if (i == 7)
             {
                 MeshRenderer meshRenderer = controlledObjects[i].GetComponent<MeshRenderer>();
-                meshRenderer.material.SetFloat("Vector1_244B0600", value);
+                meshRenderer.material.SetFloat("_WaveSpeed", value);
             }
 
             // This raises or flattens the terrain
             if (i == 8)
             {
-                int i2 = (int)value;
                 Vector3 heightChange = new Vector3(600, 100 * value, 600);
                 terrain.terrainData.size = heightChange;
             }
@@ -125,6 +127,30 @@ public class WekinatorController : MonoBehaviour
             if (i == 9)
             {
                 Light.transform.Rotate(0, value, 0);
+            }
+
+            // This controls the size of the fog particles
+            if (i == 10)
+            {
+                ParticleSystem particleSystem = controlledObjects[i].GetComponent<ParticleSystem>();
+                var mainModule = particleSystem.main;
+
+                //Uses the Wekinator output to control 3D start size of the particles
+                mainModule.startSizeX = value;
+                mainModule.startSizeY = 1f;
+                mainModule.startSizeZ = 1f;
+            }
+
+            // This controls the size of the rain particles
+            if (i == 11)
+            {
+                ParticleSystem particleSystem = controlledObjects[i].GetComponent<ParticleSystem>();
+                var mainModule = particleSystem.main;
+
+                //Uses the Wekinator output to control 3D start size of the particles
+                mainModule.startSizeX = value;
+                mainModule.startSizeY = value;
+                mainModule.startSizeZ = value;
             }
 
         }
