@@ -12,8 +12,9 @@ This project was made possible using [Node.js](https://nodejs.org/en/download/pa
 
 3. To run the MediaPipe Hands OSC ML model, you will need to use the following commands in a Windows PowerShell window launched in administrator mode: ```cd``` (type your path to the folder containing the downloaded MediaPipe Hands OSC model). Then type ```npm install``` to install the node.js package which is required to run the bridge script that connects it to Wekinator. Then type ```Set-ExecutionPolicy Unrestricted```, which will allow your computer to run the bridge.js without flagging it as a threat. To run the bridge script, type ```node bridge.js``` and if you see an **“osc success”** message, then you are set for the last step. Double click on the index.html file to open in a browser and enable camera access to the window (only Google Chrome or Firefox will properly run the html file).
 
-4. Open the Elemental Motion Pose Recognition Model in Wekinator and click "Run".
+4. Open the Elemental Motion Pose Recognition Model in Wekinator and click "Run". 
 
+![Screenshot of the Wekinator file with all its output sliders.](/wekinatorRef.png)
 
 5. Press the play button at the top of the Unity editor window or press **ctrl + P** to enable play mode. To interact, move around the world using the **WASD** keys, look around using the **QERF** keys, and present your right hand to the camera while rotating on the Z-axis to transform the in-game world.
 
